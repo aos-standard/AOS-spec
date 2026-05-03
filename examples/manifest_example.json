@@ -1,0 +1,15 @@
+{
+  "_comment": "Minimal AOS v0.1 compliant manifest.json example",
+  "tool_id": "my_tool",
+  "name": "public_catalog_publisher",
+  "description": "Publishes a structured catalog of available tools for external agent discovery via MCP list_tools.",
+  "version": "1.0.0",
+  "aos_compliant": "v0.1",
+  "permitted_output_paths": [
+    "docs/reports/"
+  ],
+  "oracle_paths": [
+    "evals/",
+    "config/"
+  ]
+}

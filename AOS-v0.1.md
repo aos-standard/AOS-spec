@@ -1,5 +1,5 @@
 # AOS — AI Operating Standard
-## Version 0.1 | Status: Draft | 2026-04-06
+## Version 0.1 | Status: Stable | 2026-04-06
 
 ---
 
@@ -209,3 +209,61 @@ repository (forensic audit, 2026-04-01).
 
 Physical constraints are not a supplement to textual rules.
 They are the replacement.
+
+---
+
+## §8 Tool Compliance Declaration
+
+An AOS-compliant tool declares its zone boundaries in `manifest.json`
+by adding the following fields:
+
+```json
+{
+  "aos_compliant": "v0.1",
+  "permitted_output_paths": ["docs/reports/"],
+  "oracle_paths": ["evals/", "config/"]
+}
+```
+
+| Field | Required | Description |
+|-------|----------|-------------|
+| `aos_compliant` | **Yes** | AOS version string (e.g. `"v0.1"`). Presence signals the tool is AOS-compliant. |
+| `permitted_output_paths` | **Yes** | List of relative paths (from tool root) where agents may write. |
+| `oracle_paths` | Recommended | List of relative paths agents must not write. Defaults to `["evals/", "config/"]` if omitted. |
+
+A tool that declares `aos_compliant` MUST ensure its runtime enforcement
+(PreToolUse hook, CI gate, or equivalent) actually blocks writes to
+`oracle_paths`. Declaration without enforcement is non-compliant.
+
+See `examples/manifest_example.json` for a minimal compliant example.
+
+---
+
+## §9 Agent Discovery
+
+AOS-compliant tools are discoverable via the MCP `list_tools` interface.
+An agent querying a compliant MCP server SHOULD:
+
+1. Call `list_tools` on the MCP endpoint.
+2. Inspect each tool entry for the `aos_compliant` field.
+3. Consider only entries where `aos_compliant` is present as eligible
+   for autonomous, agent-to-agent invocation.
+4. Retrieve `permitted_output_paths` and `oracle_paths` before issuing
+   any write operations.
+
+**Example response fragment:**
+
+```json
+[
+  {
+    "name": "public_catalog_publisher",
+    "description": "Publishes a structured catalog of available tools for external agent discovery.",
+    "aos_compliant": "v0.1",
+    "permitted_output_paths": ["docs/reports/"],
+    "oracle_paths": ["evals/", "config/"]
+  }
+]
+```
+
+Non-compliant tools (no `aos_compliant` field) SHOULD be treated as
+unsafe for autonomous write operations.
