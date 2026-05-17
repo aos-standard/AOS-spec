@@ -1,29 +1,72 @@
-# AOS — AI Operating Standard (v0.1)
+# AOS — AI Operating Standard
 
-**A physical governance layer for autonomous AI agents.**
+[![GitHub stars](https://img.shields.io/github/stars/aos-standard/AOS-spec?style=flat-square)](https://github.com/aos-standard/AOS-spec/stargazers)
+![Spec Status](https://img.shields.io/badge/Spec%20Status-Stable-blue?style=flat-square)
 
-> "Textual rules enforce at reading time. Physical constraints enforce at execution time."
+**A minimal, machine-enforceable specification for constraining AI agent file operations.**
 
-## The Problem
-In a 2026 forensic audit of a production repository, an AI agent was provided with 130KB of governance documentation. It acknowledged the rules, then proceeded to violate them in 52 out of 52 tool calls. 
+## Why AOS?
 
-**Instruction is not enough. We need architecture.**
+- **Execution-time enforcement** — Text-only policies are easy to drift from at runtime; AOS blocks unsafe writes *before* they reach the filesystem.
+- **Three zones** — Every path is classified as Oracle (read-only), Permitted (workspace), or Prohibited — see [AOS-v0.1.md](./AOS-v0.1.md) §3.2.
+- **Implementation-agnostic** — Any agent runtime that supports pre-invocation hooks (or equivalent guards) can comply; no single vendor stack is required.
 
-## What is AOS?
-AOS defines a minimum physical constraint layer for AI agent operations. It moves governance from "prompt-based compliance" to "system-level enforcement."
+## Quick example
 
-### Key Specifications:
-* **§3.2 Three Zones:** Classifies every path as **Oracle** (Read-only), **Permitted** (Workspace), or **Prohibited**.
-* **§4.1 Physical Enforcement:** Requires a **PreToolUse hook** that intercepts tool calls and blocks writes to the Oracle zone with `exit 2` before any side effect occurs.
-* **§4.3 Structural Role Separation:** Mandates that the agent generating an artifact MUST NOT be the one evaluating it. 
-* **§4.4 Physical Evidence:** Conversational assertions ("Task done") are rejected. Only physical artifacts (logs, test results) count as evidence of completion.
+This is what AOS enforcement looks like in practice — a minimal PreToolUse hook (Python):
 
-## Implementation
-* **[AOS-v0.1.md](./AOS-v0.1.md):** The core specification for human and machine reading.
-* **Reference Implementation:** [iron_cage](https://github.com/aos-standard/iron_cage) (Reference implementation for Claude Code / Cursor).
+```python
+# Block writes to Oracle paths before the tool runs (exit 2 = block).
+import json, re, sys
+_ORACLE = [re.compile(r"(?:^|/)evals(?:/|$)")]
 
-## Why this matters
-As we move toward autonomous agents with filesystem access, "behaving well" cannot be a choice left to the model. AOS provides the "Physical Laws" that the model simply cannot break.
+data = json.loads(sys.stdin.read())
+path = str((data.get("tool_input") or {}).get("file_path") or "")
+norm = path.replace("\\", "/")
+if path and any(p.search(norm) for p in _ORACLE):
+    print("[AOS] blocked Oracle write", file=sys.stderr)
+    sys.exit(2)
+```
+
+Runnable copies: [`examples/minimal_hook_python/hook.py`](examples/minimal_hook_python/hook.py) · [`examples/hook_pretooluse.py`](examples/hook_pretooluse.py)
+
+## Structure: Three Zones
+
+| Zone | Writes |
+|------|--------|
+| **Oracle** | MUST NOT — canonical sources, expectations, governance inputs agents must not mutate |
+| **Permitted** | MAY — workspace paths where an agent may produce artifacts within declared boundaries |
+| **Prohibited** | MUST NOT — paths outside permitted scope unless explicitly authorized by a human maintainer |
+
+Normative definitions and hook rules: **[AOS-v0.1.md](./AOS-v0.1.md)**.
+
+## How to cite AOS in your project
+
+Add zone boundaries to `manifest.json` (see §8 in the spec):
+
+```json
+{
+  "aos_compliant": "v0.1",
+  "oracle_paths": ["evals/", "config/"],
+  "permitted_output_paths": ["docs/reports/"]
+}
+```
+
+Minimal sample file: [`examples/manifest_annotation/manifest.json`](examples/manifest_annotation/manifest.json).
+
+## Status & roadmap
+
+- **v0.1** — Stable. Includes Three Zones, mandatory PreToolUse interception for writes/shell (§4.1), structural separation for evaluation (§4.3), and physical evidence requirements (§4.4).
+- **v0.2 (planned)** — Additional agent-tool implementation patterns and interoperability notes.
+
+## Reference implementation
+
+**[iron_cage](https://github.com/aos-standard/iron_cage)** — Reference wiring for Claude Code / Cursor-class environments.
 
 ---
-*Status: Draft (v0.1). Contributions via Issues and PRs are welcome.*
+
+⭐ **Star this repo** if you find it useful.
+
+💬 **Open an issue** if you have questions or use cases — [issue templates](.github/ISSUE_TEMPLATE/) available.
+
+🔀 **Pull requests welcome** — see [CONTRIBUTING.md](./CONTRIBUTING.md).

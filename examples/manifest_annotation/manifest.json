@@ -1,0 +1,13 @@
+{
+  "_comment": "Minimal manifest snippet declaring AOS v0.1 zone boundaries",
+  "name": "example_tool",
+  "version": "1.0.0",
+  "aos_compliant": "v0.1",
+  "oracle_paths": [
+    "evals/",
+    "config/"
+  ],
+  "permitted_output_paths": [
+    "docs/reports/"
+  ]
+}
