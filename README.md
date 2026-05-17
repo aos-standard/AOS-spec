@@ -59,10 +59,6 @@ Minimal sample file: [`examples/manifest_annotation/manifest.json`](examples/man
 - **v0.1** — Stable. Includes Three Zones, mandatory PreToolUse interception for writes/shell (§4.1), structural separation for evaluation (§4.3), and physical evidence requirements (§4.4).
 - **v0.2 (planned)** — Additional agent-tool implementation patterns and interoperability notes.
 
-## Reference implementation
-
-**[iron_cage](https://github.com/aos-standard/iron_cage)** — Reference wiring for Claude Code / Cursor-class environments.
-
 ---
 
 ⭐ **Star this repo** if you find it useful.
