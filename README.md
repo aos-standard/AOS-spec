@@ -8,7 +8,7 @@
 ## Why AOS?
 
 - **Execution-time enforcement** — Text-only policies are easy to drift from at runtime; AOS blocks unsafe writes *before* they reach the filesystem.
-- **Three zones** — Every path is classified as Oracle (read-only), Permitted (workspace), or Prohibited — see [AOS-v0.1.md](./AOS-v0.1.md) §3.2.
+- **Three zones** — Every path is classified as Oracle (read-only), Permitted (workspace), or Prohibited — see [AOS-v0.2.md](./AOS-v0.2.md) §3.2.
 - **Implementation-agnostic** — Any agent runtime that supports pre-invocation hooks (or equivalent guards) can comply; no single vendor stack is required.
 
 ## Quick example
@@ -38,7 +38,7 @@ Runnable copies: [`examples/minimal_hook_python/hook.py`](examples/minimal_hook_
 | **Permitted** | MAY — workspace paths where an agent may produce artifacts within declared boundaries |
 | **Prohibited** | MUST NOT — paths outside permitted scope unless explicitly authorized by a human maintainer |
 
-Normative definitions and hook rules: **[AOS-v0.1.md](./AOS-v0.1.md)**.
+Normative definitions and hook rules: **[AOS-v0.2.md](./AOS-v0.2.md)** · [AOS-v0.1.md](./AOS-v0.1.md) (previous stable).
 
 ## How to cite AOS in your project
 
@@ -56,8 +56,8 @@ Minimal sample file: [`examples/manifest_annotation/manifest.json`](examples/man
 
 ## Status & roadmap
 
-- **v0.1** — Stable. Includes Three Zones, mandatory PreToolUse interception for writes/shell (§4.1), structural separation for evaluation (§4.3), and physical evidence requirements (§4.4).
-- **v0.2 (planned)** — Additional agent-tool implementation patterns and interoperability notes.
+- **v0.2** — Stable. Adds §10 Implementation Examples: four production patterns showing §4.4, §4.1, §4.5, §8, §9 in practice. §6 updated to [physical-agent-patterns](https://github.com/aos-standard/physical-agent-patterns).
+- **v0.1** — Stable. Three Zones, PreToolUse interception (§4.1), evaluation separation (§4.3), physical evidence (§4.4).
 
 ---
 
