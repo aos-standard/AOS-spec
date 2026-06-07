@@ -69,10 +69,13 @@ Minimal sample file: [`examples/manifest_annotation/manifest.json`](examples/man
 
 ---
 
-## Implementation Support
+## 🛠 Implementation Support
 
-Rolling AOS into a production agent system and want hands-on help?
+Implementing AOS in production and want battle-tested templates?
 
-**[Implementation support available →](https://buy.stripe.com/cNieVf0Bs8MB4vP2G81Nu00)**
+The **Production AI Agent Reliability Pack** includes:
+- AOS-compliant agent templates (systemd, immune loop, permission boundaries)
+- Monthly agent self-audit checklist
+- Async implementation Q&A via Slack
 
-Covers zone boundary design, PreToolUse hook wiring, manifest annotation, and CI integration for your specific stack.
+[→ Production AI Agent Reliability Pack (¥4,980/mo)](https://buy.stripe.com/cNieVf0Bs8MB4vP2G81Nu00)
