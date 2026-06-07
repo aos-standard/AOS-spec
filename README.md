@@ -66,3 +66,13 @@ Minimal sample file: [`examples/manifest_annotation/manifest.json`](examples/man
 💬 **Open an issue** if you have questions or use cases — [issue templates](.github/ISSUE_TEMPLATE/) available.
 
 🔀 **Pull requests welcome** — see [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+---
+
+## Implementation Support
+
+Rolling AOS into a production agent system and want hands-on help?
+
+**[Implementation support available →](https://buy.stripe.com/cNieVf0Bs8MB4vP2G81Nu00)**
+
+Covers zone boundary design, PreToolUse hook wiring, manifest annotation, and CI integration for your specific stack.
