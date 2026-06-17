@@ -1,0 +1,26 @@
+name: AOS Compliance Check
+description: >-
+  Validate AOS-v0.1 zone declarations with the official compliance gate.
+  Non-compliant manifests fail CI (exit 1).
+inputs:
+  target-dir:
+    description: Repository root or agent directory to scan
+    required: false
+    default: "."
+  package-version:
+    description: Version pin for aos-compliance-validator-mcp (e.g. ==0.1.0)
+    required: false
+    default: "==0.1.0"
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: "3.12"
+    - shell: bash
+      run: |
+        set -euo pipefail
+        pip install "aos-compliance-validator-mcp${{ inputs.package-version }}"
+        aos-compliance-gate --gate-mode blocking --target-dir "${{ inputs.target-dir }}"
+      env:
+        AOS_VALIDATOR_CALLER: ci

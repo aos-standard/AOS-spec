@@ -54,6 +54,55 @@ Add zone boundaries to `manifest.json` (see §8 in the spec):
 
 Minimal sample file: [`examples/manifest_annotation/manifest.json`](examples/manifest_annotation/manifest.json).
 
+## Compliance validation (official)
+
+AOS-v0.1 declarations in `manifest.json` are machine-validated by the official compliance validator published on PyPI.
+
+**Install:**
+
+```bash
+pip install aos-compliance-validator-mcp==0.1.0
+```
+
+- **PyPI:** [aos-compliance-validator-mcp](https://pypi.org/project/aos-compliance-validator-mcp/0.1.0/)
+- **MCP server (Mode A):** `aos-compliance-validator` — stdio transport for Claude / Cursor
+- **CI gate (Mode B):** `aos-compliance-gate --gate-mode blocking --target-dir .` — exit 1 when non-compliant
+
+### Guard your agent CI in 3 lines
+
+Add this job step to your workflow (or use the reusable action below):
+
+```yaml
+- run: |
+    pip install aos-compliance-validator-mcp==0.1.0
+    aos-compliance-gate --gate-mode blocking --target-dir .
+```
+
+**Reusable GitHub Action** (copy into your repo, or reference from this repo after release):
+
+```yaml
+- uses: aos-standard/AOS-spec/.github/actions/aos-compliance-check@main
+  with:
+    target-dir: .
+    package-version: "==0.1.0"
+```
+
+### MCP client snippet (Claude / Cursor)
+
+Copy into your `mcp.json` (full example: [`examples/compliance_validator/mcp.json`](examples/compliance_validator/mcp.json)):
+
+```json
+{
+  "mcpServers": {
+    "aos-compliance-validator": {
+      "command": "aos-compliance-validator",
+      "args": [],
+      "env": { "AOS_VALIDATOR_TARGET_DIR": "." }
+    }
+  }
+}
+```
+
 ## Status & roadmap
 
 - **v0.2** — Stable. Adds §10 Implementation Examples: four production patterns showing §4.4, §4.1, §4.5, §8, §9 in practice. §6 updated to [physical-agent-patterns](https://github.com/aos-standard/physical-agent-patterns).
