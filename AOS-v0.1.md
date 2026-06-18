@@ -235,12 +235,12 @@ A tool that declares `aos_compliant` MUST ensure its runtime enforcement
 (PreToolUse hook, CI gate, or equivalent) actually blocks writes to
 `oracle_paths`. Declaration without enforcement is non-compliant.
 
-**Machine validation:** Declarations are checked by the official validator
-[`aos-compliance-validator-mcp`](https://pypi.org/project/aos-compliance-validator-mcp/)
-(`pip install aos-compliance-validator-mcp`; pin a version in CI — see
+**Machine validation:** Declarations and blast-radius divergences are checked by
+[`mcp-blast-radius`](https://pypi.org/project/mcp-blast-radius/)
+(`pip install mcp-blast-radius`; pin a version in CI — see
 [README § Compliance validation](./README.md#compliance-validation-official)).
-Use `aos-compliance-gate --gate-mode blocking --target-dir .` in CI, or the
-MCP server `aos-compliance-validator` for interactive checks.
+Use `mcp-blast-radius-gate --gate-mode blocking --target-dir .` in CI, or the
+MCP server `mcp-blast-radius` for interactive checks.
 
 See `examples/manifest_example.json` for a minimal compliant example.
 

@@ -56,17 +56,19 @@ Minimal sample file: [`examples/manifest_annotation/manifest.json`](examples/man
 
 ## Compliance validation (official)
 
-AOS-v0.1 declarations in `manifest.json` are machine-validated by the official compliance validator published on PyPI.
+**MCP Blast-Radius Auditor** statically extracts what an MCP server can touch and validates AOS-v0.1 zone declarations in `manifest.json` (Oracle / Permitted / Prohibited).
 
 **Install:**
 
 ```bash
-pip install aos-compliance-validator-mcp==0.1.0
+pip install mcp-blast-radius==0.2.0
 ```
 
-- **PyPI:** [aos-compliance-validator-mcp](https://pypi.org/project/aos-compliance-validator-mcp/0.1.0/)
-- **MCP server (Mode A):** `aos-compliance-validator` — stdio transport for Claude / Cursor
-- **CI gate (Mode B):** `aos-compliance-gate --gate-mode blocking --target-dir .` — exit 1 when non-compliant
+- **PyPI:** [mcp-blast-radius](https://pypi.org/project/mcp-blast-radius/0.2.0/)
+- **MCP server (Mode A):** `mcp-blast-radius` — stdio transport for Claude / Cursor
+- **CI gate (Mode B):** `mcp-blast-radius-gate --gate-mode blocking --target-dir .` — exit 1 on divergences or violations
+
+Legacy package [`aos-compliance-validator-mcp`](https://pypi.org/project/aos-compliance-validator-mcp/0.1.0/) (0.1.0) remains on PyPI but is superseded.
 
 ### Guard your agent CI in 3 lines
 
@@ -74,8 +76,8 @@ Add this job step to your workflow (or use the reusable action below):
 
 ```yaml
 - run: |
-    pip install aos-compliance-validator-mcp==0.1.0
-    aos-compliance-gate --gate-mode blocking --target-dir .
+    pip install mcp-blast-radius==0.2.0
+    mcp-blast-radius-gate --gate-mode blocking --target-dir .
 ```
 
 **Reusable GitHub Action** (copy into your repo, or reference from this repo after release):
@@ -84,7 +86,7 @@ Add this job step to your workflow (or use the reusable action below):
 - uses: aos-standard/AOS-spec/.github/actions/aos-compliance-check@main
   with:
     target-dir: .
-    package-version: "==0.1.0"
+    package-version: "==0.2.0"
 ```
 
 ### MCP client snippet (Claude / Cursor)
@@ -94,8 +96,8 @@ Copy into your `mcp.json` (full example: [`examples/compliance_validator/mcp.jso
 ```json
 {
   "mcpServers": {
-    "aos-compliance-validator": {
-      "command": "aos-compliance-validator",
+    "mcp-blast-radius": {
+      "command": "mcp-blast-radius",
       "args": [],
       "env": { "AOS_VALIDATOR_TARGET_DIR": "." }
     }

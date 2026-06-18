@@ -1,7 +1,7 @@
 {
   "mcpServers": {
-    "aos-compliance-validator": {
-      "command": "aos-compliance-validator",
+    "mcp-blast-radius": {
+      "command": "mcp-blast-radius",
       "args": [],
       "env": {
         "AOS_VALIDATOR_TARGET_DIR": "."

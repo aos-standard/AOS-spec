@@ -15,7 +15,7 @@ ENV PIP_NO_CACHE_DIR=1 \
     PYTHONUNBUFFERED=1 \
     AOS_VALIDATOR_TARGET_DIR=/app
 
-RUN pip install --no-cache-dir aos-compliance-validator-mcp==0.1.0
+RUN pip install --no-cache-dir mcp-blast-radius==0.2.0
 
 COPY examples/compliance_validator/mcp.json examples/manifest_annotation/manifest.json ./
 
@@ -23,4 +23,4 @@ RUN useradd --create-home --shell /bin/bash mcp \
     && chown -R mcp:mcp /app
 USER mcp
 
-ENTRYPOINT ["aos-compliance-validator"]
+ENTRYPOINT ["mcp-blast-radius"]

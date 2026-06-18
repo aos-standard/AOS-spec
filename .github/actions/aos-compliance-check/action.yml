@@ -1,16 +1,16 @@
 name: AOS Compliance Check
 description: >-
-  Validate AOS-v0.1 zone declarations with the official compliance gate.
-  Non-compliant manifests fail CI (exit 1).
+  Validate AOS-v0.1 zone declarations and blast-radius divergences with MCP Blast-Radius Auditor.
+  Non-compliant manifests or divergences fail CI (exit 1).
 inputs:
   target-dir:
     description: Repository root or agent directory to scan
     required: false
     default: "."
   package-version:
-    description: Version pin for aos-compliance-validator-mcp (e.g. ==0.1.0)
+    description: Version pin for mcp-blast-radius (e.g. ==0.2.0)
     required: false
-    default: "==0.1.0"
+    default: "==0.2.0"
 runs:
   using: composite
   steps:
@@ -20,7 +20,7 @@ runs:
     - shell: bash
       run: |
         set -euo pipefail
-        pip install "aos-compliance-validator-mcp${{ inputs.package-version }}"
-        aos-compliance-gate --gate-mode blocking --target-dir "${{ inputs.target-dir }}"
+        pip install "mcp-blast-radius${{ inputs.package-version }}"
+        mcp-blast-radius-gate --gate-mode blocking --target-dir "${{ inputs.target-dir }}"
       env:
         AOS_VALIDATOR_CALLER: ci
