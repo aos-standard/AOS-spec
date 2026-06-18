@@ -1,0 +1,7 @@
+.git
+.github
+*.md
+!README.md
+examples/minimal_hook_python
+examples/hook_pretooluse.py
+examples/manifest_example.json
