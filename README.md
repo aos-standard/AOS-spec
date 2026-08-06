@@ -110,6 +110,10 @@ Copy into your `mcp.json` (full example: [`examples/compliance_validator/mcp.jso
 - **v0.2** — Stable. Adds §10 Implementation Examples: four production patterns showing §4.4, §4.1, §4.5, §8, §9 in practice. §6 updated to [physical-agent-patterns](https://github.com/aos-standard/physical-agent-patterns).
 - **v0.1** — Stable. Three Zones, PreToolUse interception (§4.1), evaluation separation (§4.3), physical evidence (§4.4).
 
+## Field observations (non-normative)
+
+Measured MCP scan and re-scan notes live in [`findings/20260806_mcp_static_scan_observations.md`](findings/20260806_mcp_static_scan_observations.md). These are **observations only** — not part of the v0.2 normative spec. Observation points so far: **2026-08-02** and **2026-08-03** (two points).
+
 ---
 
 ⭐ **Star this repo** if you find it useful.
