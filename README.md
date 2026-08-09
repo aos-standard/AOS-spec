@@ -114,6 +114,10 @@ Copy into your `mcp.json` (full example: [`examples/compliance_validator/mcp.jso
 
 Measured MCP scan and re-scan notes live in [`findings/20260806_mcp_static_scan_observations.md`](findings/20260806_mcp_static_scan_observations.md). These are **observations only** — not part of the v0.2 normative spec. Observation points so far: **2026-08-02** and **2026-08-03** (two points).
 
+## Physical evidence — operational pointer (non-normative)
+
+§4.4 asks for physical artifacts; third-party verifiability is **not yet defined** in this spec. See [§4.4.1](./AOS-v0.2.md#441-operational-example--physical-evidence-in-practice-non-normative) and the in-progress example at [aos-standard/catalog](https://github.com/aos-standard/catalog) (`ANCHORS.jsonl`, `anchors_verify.py`). Related discussion: [MCP SEP-3004](https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3004).
+
 ---
 
 ⭐ **Star this repo** if you find it useful.

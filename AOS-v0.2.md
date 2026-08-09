@@ -138,6 +138,24 @@ a test result file, a structured output file with a timestamp.
 Unacceptable evidence: a conversational assertion ("the task is done"),
 a claim without a file path, a reference to prior session output.
 
+### §4.4.1 Operational Example — Physical Evidence in Practice (non-normative)
+
+> **This section is non-normative.** It does not add requirements beyond §4.4.
+
+Section §4.4 requires that evidence exist as a physical artifact. Whether that
+evidence can be checked by a third party is a separate property; **this
+specification does not yet define third-party verifiability.**
+
+One deployment in progress:
+
+- Public catalog: https://github.com/aos-standard/catalog
+- Artifacts: `ANCHORS.jsonl`, `anchors_verify.py` (line-digest sidecar and
+  boundary events)
+
+Related standard-side discussion (external, in flux):
+
+- MCP SEP-3004: https://github.com/modelcontextprotocol/modelcontextprotocol/pull/3004
+
 ### §4.5 Escalation on Ambiguity (MUST)
 
 If an agent receives an instruction that requires a design decision
