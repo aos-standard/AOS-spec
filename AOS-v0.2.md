@@ -258,7 +258,7 @@ A tool that declares `aos_compliant` MUST ensure its runtime enforcement
 **Machine validation:** Declarations and blast-radius divergences are checked by
 [`mcp-blast-radius`](https://pypi.org/project/mcp-blast-radius/)
 (`pip install mcp-blast-radius`; pin a version in CI — see
-[README § Compliance validation](./README.md#compliance-validation-official)).
+[README § Reference implementation](./README.md#reference-implementation)).
 Use `mcp-blast-radius-gate --gate-mode blocking --target-dir .` in CI, or the
 MCP server `mcp-blast-radius` for interactive checks.
 
