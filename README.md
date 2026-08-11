@@ -1,9 +1,20 @@
-# AOS — AI Operating Standard
+# AOS — AI Operating Spec
 
 [![GitHub stars](https://img.shields.io/github/stars/aos-standard/AOS-spec?style=flat-square)](https://github.com/aos-standard/AOS-spec/stargazers)
 ![Spec Status](https://img.shields.io/badge/Spec%20Status-Stable-blue?style=flat-square)
 
 **A minimal, machine-enforceable specification for constraining AI agent file operations.**
+
+## Who uses this
+
+I run a fleet of autonomous agents unattended on a single machine. They kept failing
+the same way — writing to files they had been told not to touch — so I wrote down the
+constraint that stopped it. This spec is that constraint.
+
+**Adoption: my own fleet only.** There are no third-party implementations yet. The
+reference implementation below is mine, and the badge on my own packages reads
+`self-audited` for the same reason. If you implement AOS, open an issue and I will
+list you here.
 
 ## Why AOS?
 
@@ -54,17 +65,17 @@ Add zone boundaries to `manifest.json` (see §8 in the spec):
 
 Minimal sample file: [`examples/manifest_annotation/manifest.json`](examples/manifest_annotation/manifest.json).
 
-## Compliance validation (official)
+## Reference implementation
 
 **MCP Blast-Radius Auditor** statically extracts what an MCP server can touch and validates AOS-v0.1 zone declarations in `manifest.json` (Oracle / Permitted / Prohibited).
 
 **Install:**
 
 ```bash
-pip install mcp-blast-radius==0.2.0
+pip install mcp-blast-radius==0.2.5
 ```
 
-- **PyPI:** [mcp-blast-radius](https://pypi.org/project/mcp-blast-radius/0.2.0/)
+- **PyPI:** [mcp-blast-radius](https://pypi.org/project/mcp-blast-radius/0.2.5/)
 - **MCP server (Mode A):** `mcp-blast-radius` — stdio transport for Claude / Cursor
 - **CI gate (Mode B):** `mcp-blast-radius-gate --gate-mode blocking --target-dir .` — exit 1 on divergences or violations
 
@@ -76,7 +87,7 @@ Add this job step to your workflow (or use the reusable action below):
 
 ```yaml
 - run: |
-    pip install mcp-blast-radius==0.2.0
+    pip install mcp-blast-radius==0.2.5
     mcp-blast-radius-gate --gate-mode blocking --target-dir .
 ```
 
@@ -86,7 +97,7 @@ Add this job step to your workflow (or use the reusable action below):
 - uses: aos-standard/AOS-spec/.github/actions/aos-compliance-check@main
   with:
     target-dir: .
-    package-version: "==0.2.0"
+    package-version: "==0.2.5"
 ```
 
 ### MCP client snippet (Claude / Cursor)

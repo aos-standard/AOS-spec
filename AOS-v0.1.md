@@ -1,4 +1,4 @@
-# AOS — AI Operating Standard
+# AOS — AI Operating Spec
 ## Version 0.1 | Status: Stable | 2026-04-06
 
 ---
@@ -171,7 +171,7 @@ iron\_cage implements §4.1 via Claude Code's PreToolUse hook system,
 with Oracle zones defined in a Python configuration module.
 The hook exits 2 on Oracle writes and prohibited-zone writes.
 
-iron\_cage is not AOS. AOS is the standard.
+iron\_cage is not AOS. AOS is the spec.
 iron\_cage is evidence that §4.1–§4.5 are implementable
 in a production single-developer repository.
 

@@ -1,4 +1,4 @@
-# AOS — AI Operating Standard
+# AOS — AI Operating Spec
 ## Version 0.2 | Status: Stable | 2026-06-02
 
 ---
@@ -191,7 +191,7 @@ in production environments:
 
 Repository: https://github.com/aos-standard/physical-agent-patterns
 
-These patterns are not AOS. AOS is the standard.
+These patterns are not AOS. AOS is the spec.
 They are evidence that §4.1–§4.5 are implementable
 in a production single-developer repository.
 
