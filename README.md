@@ -138,5 +138,3 @@ Measured MCP scan and re-scan notes live in [`findings/20260806_mcp_static_scan_
 🔀 **Pull requests welcome** — see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 🛠 **Implementing AOS in production?** — see [SUPPORT.md](./SUPPORT.md).
-
----
