@@ -118,7 +118,7 @@ Copy into your `mcp.json` (full example: [`examples/compliance_validator/mcp.jso
 
 ## Status & roadmap
 
-- **v0.2** — Stable. Adds §10 Implementation Examples: four production patterns showing §4.4, §4.1, §4.5, §8, §9 in practice. §6 updated to [physical-agent-patterns](https://github.com/aos-standard/physical-agent-patterns).
+- **v0.2** — Stable. Adds §10 Implementation Examples: four production patterns showing §4.4, §4.1, §4.5, §8, §9 in practice. §6 updated to [physical-agent-patterns](https://github.com/aos-standard/physical-agent-patterns). *The reference implementation validates v0.1 declarations only; v0.2 additions are not machine-checked yet.*
 - **v0.1** — Stable. Three Zones, PreToolUse interception (§4.1), evaluation separation (§4.3), physical evidence (§4.4).
 
 ## Field observations (non-normative)
@@ -137,15 +137,6 @@ Measured MCP scan and re-scan notes live in [`findings/20260806_mcp_static_scan_
 
 🔀 **Pull requests welcome** — see [CONTRIBUTING.md](./CONTRIBUTING.md).
 
+🛠 **Implementing AOS in production?** — see [SUPPORT.md](./SUPPORT.md).
+
 ---
-
-## 🛠 Implementation Support
-
-Implementing AOS in production and want battle-tested templates?
-
-The **Production AI Agent Reliability Pack** includes:
-- AOS-compliant agent templates (systemd, immune loop, permission boundaries)
-- Monthly agent self-audit checklist
-- Async implementation Q&A via Slack
-
-[→ Production AI Agent Reliability Pack (¥4,980/mo)](https://buy.stripe.com/cNieVf0Bs8MB4vP2G81Nu00)
